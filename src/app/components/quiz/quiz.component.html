@@ -1,0 +1,45 @@
+<div class="container quiz-container mt-5">
+    <!-- Quiz Header -->
+    <div class="quiz-header text-center mb-5">
+        <h1 class="display-4"> Quiz</h1>
+        <p class="lead">Answer the following questions:</p>
+    </div>
+
+    <!-- Quiz Body -->
+    <div id="quiz" class="card shadow-sm">
+        <div class="card-body">
+            <!-- Question -->
+            <div class="quiz-question mb-4"  *ngFor="let question of questions; index as i">
+                <div *ngIf="i === currentIndex">
+                <h3>
+                    {{question.text}}
+                </h3>
+                <p *ngIf="questions.length === 0">Loading questions...</p>
+                <p class="text-danger"><strong>Time Left: {{ timeLeft }}s</strong></p>
+                </div>
+        
+            </div>
+
+            <!-- Options -->
+            <div id="options" class="list-group">
+               <ng-container *ngFor="let question of questions; index as i">
+               <ng-container *ngIf="i === currentIndex">
+                 
+                <button  *ngFor="let item of question.options; index as j" 
+                class="list-group-item list-group-item-action"
+                (click)="selectOption(j)">
+                {{item}}
+               </button>
+               </ng-container>
+               </ng-container>
+                
+            </div>
+
+            <!-- Next Button -->
+            <div class="d-grid gap-2 mt-4">
+                <button id="next-button" class="btn btn-primary btn-lg" (click)="nextQuestion()">Next Question</button>
+            </div>
+        </div>
+    </div>
+
+</div>.
